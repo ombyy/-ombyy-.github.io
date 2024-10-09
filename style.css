@@ -98,8 +98,23 @@ body::before { /* ::before is used to add content before the content of an eleme
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000; 
+    animation: borderWaveAnimation 5s infinite; /* Add animation */
 }
 
+/* @keyframes borderWaveAnimation {
+    0%, 100% {
+        border-radius: 0% 50% 0% 50%;
+    }
+    25% {
+        border-radius: 50% 0% 50% 0%;
+    }
+    50% {
+        border-radius: 0% 50% 0% 50%;
+    }
+    75% {
+        border-radius: 50% 0% 50% 0%;
+    }
+} */
 
 .silkscreen-regular {
     font-family: "Silkscreen", sans-serif;
