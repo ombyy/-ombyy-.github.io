@@ -41,29 +41,20 @@ body::before { /* ::before is used to add content before the content of an eleme
     background-size: 175px; /* Use the image's original size */
     background-repeat: repeat; /* Repeat the image */
     background-position: center; /* Center the background image */
+    border: 2px solid #3514f165;
     text-shadow:
         -1px -1px 0 #000,  
          1px -1px 0 #000,
         -1px  1px 0 #000,
-         1px  1px 0 #000; /* Add text outline */
+         1px  1px 0 #000; /* Add text outline */    
 }
 
-.topnav a::after {
-    content: ""; 
-    display: block;
-    width: 0; 
-    height: 2px; 
-    background: rgba(102, 31, 150, 0.63); 
-    transition: width 0.4s ease; 
-    position: absolute; 
-    left: 50%; 
-    bottom: 0; 
-}
+
 
 .topnav a:hover {
     background-color: rgba(255, 255, 255, 0.2); 
     color: #c76aec; 
-    transform: scale(1.3); 
+    transform: scale(0.9); 
 }
 
 .topnav a:hover::after {
