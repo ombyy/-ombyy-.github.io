@@ -119,5 +119,53 @@ body::before { /* ::before is used to add content before the content of an eleme
     font-style: normal;
 }
 
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
 
+.contactbox {
+    position: relative;
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    color: rgb(252, 252, 252);
+    font-size: 1.5em;
+    border: 1px solid #924fdf;
+    background-position: center;    
+    background-repeat: no-repeat;
+    height: 0;
+    padding-bottom: 15%; /* This ensures the height is equal to the width */
+}
 
+.contactbox:nth-child(1) {
+    color: #410350;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Silkscreen', sans-serif;
+    display: block;
+    background-color: #FF5722;
+    background-image: url(ace.gif);
+    background-size: 900px 900px; /* Adjusted to cover the square */
+}
+
+.contactbox:nth-child(2) {
+    color: #410350;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Silkscreen', sans-serif;
+    text-emphasis-color: #a81616;
+    display: block;
+    background-color: #2196F3;
+    background-image: url(shikimori-shikimori-not-just-cute.gif);
+    background-size: cover; /* Adjusted to cover the square */
+}
+
+.contactbox:nth-child(3) {
+    color: #410350;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Silkscreen', sans-serif;
+    display: block;
+    background-color: #FF5722;
+    background-image: url(animesleep1.gif);
+    background-size: cover; /* Adjusted to cover the square */
+}
