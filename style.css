@@ -136,36 +136,88 @@ body::before { /* ::before is used to add content before the content of an eleme
     background-position: center;    
     background-repeat: no-repeat;
     height: 0;
-    padding-bottom: 15%; /* This ensures the height is equal to the width */
+    padding-bottom: 15%;
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.infobox {
+  display: block;
+  justify-content: center;    
+  background-color: rgba(250, 189, 149, 0.767);
+  
+}
 .contactbox:nth-child(1) {
     color: #410350;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     font-family: 'Silkscreen', sans-serif;
     display: block;
     background-color: #FF5722;
     background-image: url(ace.gif);
-    background-size: 900px 900px; /* Adjusted to cover the square */
+    background-size: 900px 900px;
 }
 
 .contactbox:nth-child(2) {
     color: #410350;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     font-family: 'Silkscreen', sans-serif;
-    text-emphasis-color: #a81616;
     display: block;
     background-color: #2196F3;
     background-image: url(shikimori-shikimori-not-just-cute.gif);
-    background-size: cover; /* Adjusted to cover the square */
+    background-size: cover;
 }
 
 .contactbox:nth-child(3) {
     color: #410350;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     font-family: 'Silkscreen', sans-serif;
     display: block;
     background-color: #FF5722;
     background-image: url(animesleep1.gif);
-    background-size: cover; /* Adjusted to cover the square */
+    background-size: cover;
 }
+
+@media (max-width: 768px) {
+
+
+    .topnav a {
+        padding: 10px;
+        font-size: 14px;
+        text-align: center; /* Center align text */
+    }
+
+    .title {
+        font-size: 2em;
+
+    }   
+    
+    .contactbox {
+        width: 45%;
+        padding-bottom: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .topnav a {
+        padding: 10px;
+        font-size: 14px;
+        flex: 1; /* Ensure all navbar items are the same size */
+        text-align: center; /* Center align text */
+    }
+
+    .contactbox {
+        width: 90%;
+        padding-bottom: 90%;
+    }
+
+        .info-box {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box; /* Ensure padding is included in the width */
+        font-size: 1em; /* Adjust font size as needed */
+    }
+}
+
