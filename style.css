@@ -8,16 +8,8 @@ body {
     background-attachment: fixed; 
 }
 
-body::before { /* ::before is used to add content before the content of an element without changing the structure of the html */
-    content: ''; 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; 
-    background-color: rgba(255, 182, 193, 0.5); 
-    z-index: 1;
-}
+
+
 
 .topnav {
     display: flex;  
@@ -49,7 +41,30 @@ body::before { /* ::before is used to add content before the content of an eleme
          1px  1px 0 #000; /* Add text outline */    
 }
 
-
+.snake-game {
+    display: block;
+    text-align: center; 
+    color: rgb(253, 253, 253); 
+    font-family: 'Silkscreen', sans-serif ;
+    font-size: 3em; 
+    margin-top: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+    position: relative; 
+    z-index: 2;
+    border: 5px solid #3514f165;
+    padding: 2px 10px;
+    margin: 20px auto;
+    background-image: url('button_selected_hovered.png');
+    background-size: 770px;
+    background-color:rgba(94, 33, 192, 0.404);
+    font-weight: 30;
+    text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+     width: 10%;
+}
 
 .topnav a:hover {
     background-color: rgba(255, 255, 255, 0.2); 
@@ -146,6 +161,7 @@ body::before { /* ::before is used to add content before the content of an eleme
     justify-content: center;
     align-items: center;
 }
+
 
 .infobox {
   display: block;
