@@ -15,6 +15,28 @@ h1 {
     margin: 5px;
 }
 
+.message-container {
+    display: flex;
+    flex-direction: column;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.win {
+    font-family: 'fibberish', Courier, monospace;
+    font-size: 40px;
+    color: rgb(236, 233, 34);
+    text-shadow: 2px 2px 2px black;
+}
+
+.restartinfo {
+    font-family: 'fibberish', Courier, monospace;
+    font-size: 30px;
+    color: rgb(236, 233, 34);
+    text-shadow: 2px 2px 2px black;
+}
+
+
 #Title1 {
     display: flex;
     font-family: 'fibberish', Courier, monospace;

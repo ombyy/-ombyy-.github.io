@@ -10,6 +10,7 @@ let scoreInterval;
 let enemySpawnInterval; 
 let food = document.getElementById('food');
 let foodItems = []; 
+let gamewon = false;
 
 
 food.style.display = 'none';
@@ -31,6 +32,7 @@ function keyDown(e) {
 function initializeSnake() {
     try {
         let initialSegment = document.createElement('div');
+        document.getElementById('zen').style.display = 'block';
         initialSegment.classList.add('snake-head');
         let initialPosition = {
             x: (gameArea.clientWidth / 2) - (box / 2),
@@ -174,7 +176,7 @@ function NegupdateScore(points = -10) {
     displayscoreonchar(points > 0 ? `+${points}` : `${points}`);
 }
 
-function growSnake(times = 2) {
+function growSnake(times = 1) {
     try {
         for (let t = 0; t < times; t++) {
             const lastSegment = snakeHead[snakeHead.length - 1];
@@ -293,6 +295,14 @@ function handleEnemyCollision() {
     return false;
 }
 
+function overlayclear(){
+    let overlay = document.querySelector('.overlay');
+    if (overlay) {
+        overlay.remove();
+    }   
+}
+
+
 function resetGame() {
     clearInterval(gameInterval);
     clearInterval(timerInterval);
@@ -303,17 +313,20 @@ function resetGame() {
     resettmer();
     clearEnemies();
     direction = null;
+    gamewon = false;
 }
 
 function gameOver() {
+    if (gamewon) return;
     createEffect(position.x, position.y); 
-    alert('BIG SLAM! unlucky, Your score is ' + document.getElementById('score').innerText.split(': ')[1]);
+    overlay();
     resetGame();
 }
 
 function clearsnake() {
     for (let i = 0; i < snakeHead.length; i++) {
         gameArea.removeChild(snakeHead[i]);
+        document.getElementById('zen').style.display = 'none';
     }
     snakeHead = [];
 }
@@ -490,7 +503,8 @@ function moveEnemyTowardsSnake(enemy) {
     enemy.style.top = enemyY + 'px';
 }
 
-document.getElementById('startButton').addEventListener('click', function() {
+async function startGame() {
+    overlayclear();
     resetGame();
     initializeSnake();
     gameInterval = setInterval(moveSnake, 200);
@@ -498,29 +512,97 @@ document.getElementById('startButton').addEventListener('click', function() {
     startTimer();
     placeFood();
     startScoreInterval();
-    enemyspawninterval(); 
+    enemyspawninterval();
+    
+    await checkSnakeLength(51);
+    overlay();
+    gameOver();
+    gamewonreset(gamewon);
+};
+
+document.getElementById('startButton').addEventListener('click', startGame);
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('W').addEventListener('click', function() {
+        direction = 'UP';
+        
+    });
+
+    document.getElementById('A').addEventListener('click', function() {
+        direction = 'LEFT';
+        
+    });
+
+    document.getElementById('S').addEventListener('click', function() {
+        direction = 'DOWN';
+        
+    });
+
+    document.getElementById('D').addEventListener('click', function() {
+        direction = 'RIGHT';
+        
+    });
 });
 
-document.getElementById('resetButton').addEventListener('click', function() {
+function countSnakeSegments() {
+    return snakeHead.length;
+}
+
+function checkSnakeLength(targetLength) {
+    return new Promise((resolve) => {
+        const interval = setInterval(() => {
+            if (countSnakeSegments() >= targetLength) {
+                clearInterval(interval);
+                gamewon=true;
+                resolve();
+            }
+        }, 100);
+    });
+}
+
+function gamewonreset(gamewon){
+if (gamewon) {
     resetGame();
-});
+}}
 
-document.getElementById('W').addEventListener('click', function() {
-    direction = 'UP';
-    moveSnake();
-});
 
-document.getElementById('A').addEventListener('click', function() {
-    direction = 'LEFT';
-    moveSnake();
-});
 
-document.getElementById('S').addEventListener('click', function() {
-    direction = 'DOWN';
-    moveSnake();
-});
+function overlay(){
+    let overlay = document.createElement('div');
+    food.style.display = 'none';
+    overlay.classList.add('overlay');
+    overlay.style.position = 'absolute';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'black';
+    overlay.style.color = 'white';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.fontSize = '2em';
+    overlay.style.textAlign = 'center';
+    overlay.style.zIndex = '3';
+    if (gamewon){
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('win');
+    messageDiv.innerText = 'CONGRATULATIONS! ' + 'YOUR SCORE IS: ' + document.getElementById('score').innerText.split(': ')[1];
+    overlay.appendChild(messageDiv);
+} else {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('win');
+    messageDiv.innerText = 'YOU HAVE LOST! YOUR SCORE IS: ' + document.getElementById('score').innerText.split(': ')[1];
+    overlay.appendChild(messageDiv);
+    const restartinfo = document.createElement('div');
+    restartinfo.classList.add('restartinfo');
+    restartinfo.innerText = 'Click the button to restart';
+    overlay.appendChild(restartinfo);
 
-document.getElementById('D').addEventListener('click', function() {
-    direction = 'RIGHT';
-    moveSnake();
-});
+}
+    
+    
+    gameArea.appendChild(overlay);
+    console.log('overlay has been added');
+}
